@@ -1,5 +1,5 @@
-package test;
-
+import static java.util.Collections.reverse;
+import static java.util.Collections.sort;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -14,17 +14,17 @@ import main.SortArray;
 public class SortArrayTest {
 
     @Test
-    public void testOneBubbleSort() {
+    public void simpleTestOneBubbleSort() {
         SortArray sortArray = new SortArray(Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6));
-        List<List<Integer>> sortedLists = sortArray.simpleSort(false);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         List<Integer> expectedSorted = Arrays.asList(1, 1, 2, 3, 4, 5, 6, 9);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
 
     @Test
-    public void testOneBubbleSortWithSteps() {
+    public void simpleTestOneBubbleSortWithSteps() {
         SortArray sortArray = new SortArray(Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6));
-        List<List<Integer>> actualSteps = sortArray.simpleSort(true);
+        List<List<Integer>> actualSteps = sortArray.bubbleSort(true);
         List<List<Integer>> expectedSteps = new ArrayList<>();
         expectedSteps.add(Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6));
         expectedSteps.add(Arrays.asList(1, 3, 4, 1, 5, 9, 2, 6));
@@ -40,18 +40,84 @@ public class SortArrayTest {
         expectedSteps.add(Arrays.asList(1, 1, 2, 3, 4, 5, 6, 9));
         assertEquals(expectedSteps, actualSteps);
     }
+    @Test
+    public void bestCaseTestOneBubbleSort() {
+        List<Integer> expectedSorted = new ArrayList<>();
+        for (int i=-5000;i <=5000;i++){
+            expectedSorted.add(i);
+        }
+        SortArray sortArray = new SortArray(expectedSorted);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        assertEquals(expectedSorted, sortedLists.get(0));
+    }
+    @Test
+    public void bestCaseTestTwoBubbleSort() {
+        List<Integer> expectedSorted = new ArrayList<>();
+        for (int i=-100000;i <=100000;i++){
+            expectedSorted.add(i);
+        }
+        SortArray sortArray = new SortArray(expectedSorted);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        assertEquals(expectedSorted, sortedLists.get(0));
+    }
+    @Test
+    public void bestCaseTestOneBubbleSortWithSteps() {
+        List<Integer> expectedSorted = new ArrayList<>();
+        for (int i=-5000;i <=5000;i++){
+            expectedSorted.add(i);
+        }
+        SortArray sortArray = new SortArray(expectedSorted);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        List<List<Integer>> expectedReturn=new ArrayList<>();
+        expectedReturn.add(expectedSorted);
+        assertEquals(expectedReturn, sortedLists);
+    }
+    @Test
+    public void bestCaseTestTwoBubbleSortWithSteps() {
+        List<Integer> expectedSorted = new ArrayList<>();
+        for (int i=-100000;i <=100000;i++){
+            expectedSorted.add(i);
+        }
+        SortArray sortArray = new SortArray(expectedSorted);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        List<List<Integer>> expectedReturn=new ArrayList<>();
+        expectedReturn.add(expectedSorted);
+        assertEquals(expectedReturn, sortedLists);
+    }
+    @Test
+    public void worstCaseTestOneBubbleSort() {
+        List<Integer> expectedSorted = new ArrayList<>();
+        for (int i=5000;i >=-5000;i--){
+            expectedSorted.add(i);
+        }
+        SortArray sortArray = new SortArray(expectedSorted);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        reverse(expectedSorted);
+        assertEquals(expectedSorted, sortedLists.get(0));
+    }
+    @Test
+    public void worstCaseTestTwoBubbleSort() {
+        List<Integer> expectedSorted = new ArrayList<>();
+        for (int i=10000;i >=-10000;i--){
+            expectedSorted.add(i);
+        }
+        SortArray sortArray = new SortArray(expectedSorted);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        reverse(expectedSorted);
+        assertEquals(expectedSorted, sortedLists.get(0));
+    }
 
     @Test
     public void EmptyTestCaseBubbleSort() {
         SortArray sortArray = new SortArray(List.of());
-        List<List<Integer>> sortedLists = sortArray.simpleSort(false);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         assertEquals(List.of(), sortedLists.get(0));
     }
 
     @Test
     public void EmptyTestCaseBubbleSortWithSteps() {
         SortArray sortArray = new SortArray(List.of());
-        List<List<Integer>> sortedLists = sortArray.simpleSort(false);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         assertEquals(List.of(List.of()), sortedLists);
     }
 

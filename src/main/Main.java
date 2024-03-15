@@ -1,7 +1,6 @@
 package main;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +12,10 @@ public class Main {
         System.out.print("Enter the file path: ");
         String path = scanner.nextLine();
         File file = new File(path);
-
+        if (!file.exists() || !file.canRead()) {
+            System.out.println("Cannot open the file");
+            return;
+        }
         SortArray sorter = new SortArray(file);
 
         while (true) {
@@ -27,7 +29,7 @@ public class Main {
             }
             switch (choice) {
                 case 1 -> {
-                    ans = sorter.simpleSort(steps.equals("y"));
+                    ans = sorter.bubbleSort(steps.equals("y"));
                     printAnswer(ans);
                 }
                 // case 2 -> {
@@ -48,11 +50,12 @@ public class Main {
     }
 
     static void printMenu() {
-        System.out.println("Choose the sorting algorithm: ");
+        System.out.println("Choose the desired sorting algorithm: ");
         System.out.println("1. Bubble Sort");
         System.out.println("2. Merge Sort");
         System.out.println("3. Counting Sort");
-        System.out.println("4. exit");
+        System.out.println("4. Exit");
+        System.out.print("Enter choice (1-4): ");
     }
 
     static void printAnswer(List<List<Integer>> ans) {

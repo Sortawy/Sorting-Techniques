@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.Collections.swap;
 
 class RangeExceededException extends Exception {
     public RangeExceededException() {
@@ -43,7 +40,7 @@ public class SortArray {
      *                   only the result is needed
      * @return : List of the final array or List of Intermediate arrays
      */
-    public List<List<Integer>> simpleSort(boolean withSteps) {
+    public List<List<Integer>> bubbleSort(boolean withSteps) {
         List<List<Integer>> steps = new ArrayList<>();
         List<Integer> sorted = new ArrayList<>(this.numbers);
         if (withSteps) {
