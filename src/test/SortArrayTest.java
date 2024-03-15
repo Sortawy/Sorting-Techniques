@@ -1,3 +1,6 @@
+package test;
+
+import main.SortArray;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
