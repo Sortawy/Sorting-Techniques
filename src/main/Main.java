@@ -30,14 +30,14 @@ public class Main {
                     ans = sorter.simpleSort(steps.equals("y"));
                     printAnswer(ans);
                 }
-//                case 2 -> {
-//                    ans = sorter.mergeSort(steps.equals("y"));
-//                    printAnswer(ans);
-//                }
-//                case 3 -> {
-//                    ans = sorter.countingSort(steps.equals("y"));
-//                    printAnswer(ans);
-//                }
+                // case 2 -> {
+                // ans = sorter.mergeSort(steps.equals("y"));
+                // printAnswer(ans);
+                // }
+                case 3 -> {
+                    ans = sorter.countingSort(steps.equals("y"));
+                    printAnswer(ans);
+                }
                 case 4 -> {
                     return;
                 }
@@ -54,7 +54,8 @@ public class Main {
         System.out.println("3. Counting Sort");
         System.out.println("4. exit");
     }
-    static void printAnswer(List<List<Integer>> ans){
+
+    static void printAnswer(List<List<Integer>> ans) {
         ans.forEach(System.out::println);
     }
 }

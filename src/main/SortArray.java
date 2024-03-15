@@ -69,32 +69,31 @@ public class SortArray {
         }
         return steps;
     }
-    
-    
-    void mergeInPlace(List<Integer> arr, int start, int mid, int end,boolean withSteps, List<List<Integer>> steps) {
-        int mn = arr.get(start) ;
+
+    void mergeInPlace(List<Integer> arr, int start, int mid, int end, boolean withSteps, List<List<Integer>> steps) {
+        int mn = arr.get(start);
         for (int i = start + 1; i <= end; i++) {
             mn = Math.min(mn, arr.get(i));
         }
-        for(int i = start; i <= end && mn < 0; i++){
-            arr.set(i, arr.get(i) +(-1*mn));
+        for (int i = start; i <= end && mn < 0; i++) {
+            arr.set(i, arr.get(i) + (-1 * mn));
         }
         int mx = Math.max(arr.get(mid), arr.get(end)) + 1;
 
         int i = start, j = mid + 1, k = start;
         while (i <= mid && j <= end && k <= end) {
-            int num1 =arr.get(i)%mx;
-            int num2 =arr.get(j)%mx;
+            int num1 = arr.get(i) % mx;
+            int num2 = arr.get(j) % mx;
             if (num1 <= num2) {
-                arr.set(k,arr.get(k) + (num1*mx));
+                arr.set(k, arr.get(k) + (num1 * mx));
                 i++;
             } else {
-                arr.set(k,arr.get(k) + (num2*mx));
+                arr.set(k, arr.get(k) + (num2 * mx));
                 j++;
             }
             k++;
             // if (withSteps)
-            //     steps.add(new ArrayList<>(arr));
+            // steps.add(new ArrayList<>(arr));
         }
 
         while (i <= mid) {
@@ -103,7 +102,7 @@ public class SortArray {
             i++;
             k++;
             // if (withSteps)
-            //  steps.add(new ArrayList<>(arr));
+            // steps.add(new ArrayList<>(arr));
         }
 
         while (j <= end) {
@@ -112,34 +111,35 @@ public class SortArray {
             j++;
             k++;
             // if (withSteps)
-            //  steps.add(new ArrayList<>(arr));
+            // steps.add(new ArrayList<>(arr));
         }
 
-        for (i = start; i <= end; i++){
+        for (i = start; i <= end; i++) {
             arr.set(i, arr.get(i) / mx);
             // steps.add(new ArrayList<>(arr));
         }
-        for (i = start; i <= end && mn<0 ; i++){
+        for (i = start; i <= end && mn < 0; i++) {
             arr.set(i, arr.get(i) + mn);
             // steps.add(new ArrayList<>(arr));
         }
-        if ((steps.size()==0) || withSteps && !steps.get(steps.size() - 1).equals(arr))
-         steps.add(new ArrayList<>(arr));
+        if ((steps.size() == 0) || withSteps && !steps.get(steps.size() - 1).equals(arr))
+            steps.add(new ArrayList<>(arr));
     }
-   
-    List<List<Integer>> mergeSortInplace(List<Integer> arr, int start, int end, boolean withSteps, List<List<Integer>> steps) {
+
+    List<List<Integer>> mergeSortInplace(List<Integer> arr, int start, int end, boolean withSteps,
+            List<List<Integer>> steps) {
         if (start < end) {
             int mid = (start + end) / 2;
             mergeSortInplace(arr, start, mid, withSteps, steps);
             mergeSortInplace(arr, mid + 1, end, withSteps, steps);
             mergeInPlace(arr, start, mid, end, withSteps, steps);
         }
-        if(withSteps)
-         return steps;
+        if (withSteps)
+            return steps;
         else
-         return Arrays.asList(arr); 
+            return Arrays.asList(arr);
     }
-   
+
     public List<List<Integer>> mergeSort(List<Integer> arr, boolean withSteps) {
         List<List<Integer>> steps = new ArrayList<>();
         List<List<Integer>> result = mergeSortInplace(arr, 0, arr.size() - 1, withSteps, steps);
@@ -149,7 +149,6 @@ public class SortArray {
             return result;
     }
 
-    
     /**
      * Method implements Counting Sort Algorithm to sort the array in time
      * complexity O(n)
@@ -158,7 +157,7 @@ public class SortArray {
      *                   only the result is needed
      * @return : List of the final array or List of Intermediate arrays
      */
-    public List<List<Integer>> countingSort(boolean withSteps) throws RangeExceededException {
+    public List<List<Integer>> countingSort(boolean withSteps) {
         int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
         for (int i : this.numbers) {
             if (i > max)
@@ -169,7 +168,9 @@ public class SortArray {
         long range = (long) max - (long) min + 1;
         int MAXSIZE = 200000000;
         if (range > MAXSIZE) {
-            throw new RangeExceededException();
+            // throw new RangeExceededException();
+            System.out.println("Range of numbers exceeds the limits of the algorithm");
+            return null;
         }
         int count[] = new int[(int) range];
         for (int i : this.numbers)
