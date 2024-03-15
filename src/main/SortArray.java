@@ -21,10 +21,10 @@ public class SortArray {
     private int numsCount; // Length of array (for readability)
 
     // Default constructor
-    SortArray() {
+    public SortArray() {
     }
 
-    SortArray(List<Integer> nums) {
+    public SortArray(List<Integer> nums) {
         this.numbers = nums;
         this.numsCount = this.numbers.size();
     }
@@ -140,7 +140,7 @@ public class SortArray {
          return Arrays.asList(arr); 
     }
    
-    List<List<Integer>> mergeSort(List<Integer> arr, boolean withSteps) {
+    public List<List<Integer>> mergeSort(List<Integer> arr, boolean withSteps) {
         List<List<Integer>> steps = new ArrayList<>();
         List<List<Integer>> result = mergeSortInplace(arr, 0, arr.size() - 1, withSteps, steps);
         if (withSteps)

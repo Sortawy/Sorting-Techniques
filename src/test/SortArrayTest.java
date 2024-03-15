@@ -1,3 +1,5 @@
+package test;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -5,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+
+import main.SortArray;
 
 public class SortArrayTest {
 
@@ -48,9 +52,9 @@ public class SortArrayTest {
     }
     @Test
     public void MergeAverageSteps() {
-        SortArray m = new SortArray();
+        SortArray sortArray = new SortArray(List.of());
         List<Integer> arr = new ArrayList<>(Arrays.asList(3,5,67,-1,64,52,1));
-        List<List<Integer>> result = m.mergeSort(arr,true);
+        List<List<Integer>> result = sortArray.mergeSort(arr,true);
 
         List<List<Integer>> expected = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList(3, 5, 67, -1, 64, 52, 1)),
