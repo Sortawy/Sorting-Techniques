@@ -244,13 +244,7 @@ public class SortArrayTest {
         assertEquals(expectedSorted, sortedLists.get(0));
     }
     
-    @Test
-    public void mergeEmptyCase() {
-        SortArray sortArray = new SortArray(List.of());
-        List<List<Integer>> sortedLists = sortArray.mergeSort(false);
-        assertEquals(List.of(), sortedLists.get(0));
-    }
-
+   
     @Test
     public void mergeGreatNumbersCase() {
         SortArray sortArray = new SortArray(Arrays.asList(1000520,115208,889532,214387,1000520,115208));
@@ -274,16 +268,12 @@ public class SortArrayTest {
         List<Integer> expectedSorted = Arrays.asList(77);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
- 
-    // @Test
-    // public void mergeRangeExceedCase() {
-    //     SortArray sortArray = new SortArray(Arrays.asList(-2147483648, 2147483647, 0, 0, 0, 0, 0, 0, 0, 0));
-    //     List<List<Integer>> sortedLists = sortArray.mergeSort(false);
-    //     assertNull(sortedLists);
-    // }
-
-
-
+    @Test
+    public void mergeEmptyCase() {
+        SortArray sortArray = new SortArray(List.of());
+        List<List<Integer>> sortedLists = sortArray.mergeSort(false);
+        assertEquals(List.of(), sortedLists.get(0));
+    }
 
     @Test
     public void testOneCountingSort() {
