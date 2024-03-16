@@ -32,10 +32,10 @@ public class Main {
                     ans = sorter.bubbleSort(steps.equals("y"));
                     printAnswer(ans);
                 }
-                // case 2 -> {
-                // ans = sorter.mergeSort(steps.equals("y"));
-                // printAnswer(ans);
-                // }
+                case 2 -> {
+                    ans = sorter.mergeSort(steps.equals("y"));
+                    printAnswer(ans);
+                }
                 case 3 -> {
                     ans = sorter.countingSort(steps.equals("y"));
                     printAnswer(ans);
