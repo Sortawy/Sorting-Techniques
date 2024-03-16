@@ -2,8 +2,7 @@ package test;
 
 import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,7 +97,12 @@ public class SortArrayTest {
             expectedSorted.add(i);
         }
         SortArray sortArray = new SortArray(expectedSorted);
+        long startTime = System.currentTimeMillis();
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        long stopTime = System.currentTimeMillis();
+        long elapsed_time=stopTime-startTime;
+        long expected_time = 1000 ; // in ms
+        assertTrue(elapsed_time <= expected_time );
         reverse(expectedSorted);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
@@ -110,7 +114,12 @@ public class SortArrayTest {
             expectedSorted.add(i);
         }
         SortArray sortArray = new SortArray(expectedSorted);
+        long startTime = System.currentTimeMillis();
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        long stopTime = System.currentTimeMillis();
+        long elapsed_time=stopTime-startTime;
+        long expected_time = 4000 ; // in ms
+        assertTrue(elapsed_time <= expected_time );
         reverse(expectedSorted);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
