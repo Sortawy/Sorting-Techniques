@@ -47,7 +47,7 @@ public class MeanTime {
                         new SortArray(array).bubbleSort(random.nextBoolean());
                         break;
                     case "merge":
-                        new SortArray(array).mergeSort(array, random.nextBoolean());
+                        new SortArray(array).mergeSort(random.nextBoolean());
                         break;
                     case "counting":
                         new SortArray(array).countingSort(random.nextBoolean());

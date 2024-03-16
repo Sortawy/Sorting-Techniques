@@ -67,85 +67,78 @@ public class SortArray {
         return steps;
     }
 
-    void mergeInPlace(List<Integer> arr, int start, int mid, int end, boolean withSteps, List<List<Integer>> steps) {
-        int mn = arr.get(start);
-        for (int i = start + 1; i <= end; i++) {
-            mn = Math.min(mn, arr.get(i));
-        }
-        for (int i = start; i <= end && mn < 0; i++) {
-            arr.set(i, arr.get(i) + (-1 * mn));
-        }
-        int mx = Math.max(arr.get(mid), arr.get(end)) + 1;
+    
+    void merge(List<Integer>arr,boolean withSteps,List<List<Integer>> steps,int start, int mid,int end) 
+    {
+            int n1 = mid - start + 1;
+            int n2 = end - mid;
+            List<Integer> leftAr = new ArrayList<>();
+            List<Integer> rightAr = new ArrayList<>();
 
-        int i = start, j = mid + 1, k = start;
-        while (i <= mid && j <= end && k <= end) {
-            int num1 = arr.get(i) % mx;
-            int num2 = arr.get(j) % mx;
-            if (num1 <= num2) {
-                arr.set(k, arr.get(k) + (num1 * mx));
-                i++;
-            } else {
-                arr.set(k, arr.get(k) + (num2 * mx));
-                j++;
+            for (int i = 0; i < n1; ++i)
+            leftAr.add(arr.get(start + i));
+                
+            for (int j = 0; j < n2; ++j)
+            rightAr.add(arr.get(mid + 1 + j));
+
+            int i = 0, j = 0;
+            int k = start;
+            while (i < n1 && j < n2) {
+                if (leftAr.get(i) <= rightAr.get(j)) {
+                    arr.set(k, leftAr.get(i));
+                    i++;
+                }
+                else {
+                    arr.set(k, rightAr.get(j));
+                    j++;
+                }
+                if(withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
+                    steps.add(new ArrayList<>(arr));
+
+                k++;
             }
-            k++;
-            // if (withSteps)
-            // steps.add(new ArrayList<>(arr));
-        }
-
-        while (i <= mid) {
-            int num = arr.get(i) % mx;
-            arr.set(k, arr.get(k) + (num * mx));
-            i++;
-            k++;
-            // if (withSteps)
-            // steps.add(new ArrayList<>(arr));
-        }
-
-        while (j <= end) {
-            int num = arr.get(j) % mx;
-            arr.set(k, arr.get(k) + (num * mx));
-            j++;
-            k++;
-            // if (withSteps)
-            // steps.add(new ArrayList<>(arr));
-        }
-
-        for (i = start; i <= end; i++) {
-            arr.set(i, arr.get(i) / mx);
-            // steps.add(new ArrayList<>(arr));
-        }
-        for (i = start; i <= end && mn < 0; i++) {
-            arr.set(i, arr.get(i) + mn);
-            // steps.add(new ArrayList<>(arr));
-        }
-        if ((steps.size() == 0) || withSteps && !steps.get(steps.size() - 1).equals(arr))
-            steps.add(new ArrayList<>(arr));
+            while (i < n1) {
+                arr.set(k, leftAr.get(i));
+                i++;
+                k++;
+                if(withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
+                 steps.add(new ArrayList<>(arr));
+            }
+            while (j < n2) {
+                arr.set(k, rightAr.get(j));
+                j++;
+                k++;
+                if(withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
+                 steps.add(new ArrayList<>(arr));
+            }
+            
     }
 
-    List<List<Integer>> mergeSortInplace(List<Integer> arr, int start, int end, boolean withSteps,
-            List<List<Integer>> steps) {
+    List<List<Integer>> mergeSortHelper(List<Integer> arr, boolean withSteps, List<List<Integer>> steps,int start,int end ) {
+        if(arr.size()<=1)
+            return Arrays.asList(arr);
+
         if (start < end) {
-            int mid = (start + end) / 2;
-            mergeSortInplace(arr, start, mid, withSteps, steps);
-            mergeSortInplace(arr, mid + 1, end, withSteps, steps);
-            mergeInPlace(arr, start, mid, end, withSteps, steps);
+            int mid = start + (end - start) /2;
+            mergeSortHelper(arr,withSteps,steps, start, mid);
+            mergeSortHelper(arr,withSteps,steps, mid + 1, end);
+            merge(arr, withSteps, steps, start, mid, end);
         }
         if (withSteps)
             return steps;
         else
             return Arrays.asList(arr);
     }
-
-    public List<List<Integer>> mergeSort(List<Integer> arr, boolean withSteps) {
+    
+    public List<List<Integer>> mergeSort(boolean withSteps) {
+        List<Integer> arr=new ArrayList<>(this.numbers);
         List<List<Integer>> steps = new ArrayList<>();
-        List<List<Integer>> result = mergeSortInplace(arr, 0, arr.size() - 1, withSteps, steps);
+        List<List<Integer>> result = mergeSortHelper(arr,withSteps, steps,0,arr.size()-1);
         if (withSteps)
             return steps;
         else
             return result;
     }
-
     /**
      * Method implements Counting Sort Algorithm to sort the array in time
      * complexity O(n)
@@ -214,4 +207,5 @@ public class SortArray {
             throw new RuntimeException(e);
         }
     }
+   
 }
