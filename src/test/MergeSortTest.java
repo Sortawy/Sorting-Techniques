@@ -10,7 +10,14 @@ import java.util.List;
 
 import static java.util.Collections.sort;
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
+// * TODO: Merge Sort Unit Test
+//done * large n's random && time check (without steps) (using Random)
+// done * random small n (using Random)
+// done* time check in worst cases
+//done * all same number (big/small)
+//done * add more simple with/without steps (like 2 more)
+// done * n=2
 public class MergeSortTest {
 
     @Test
@@ -43,7 +50,15 @@ public class MergeSortTest {
     @Test
     public void mergeWorstSteps() {
         SortArray sortArray = new SortArray((Arrays.asList(7, 6, 5, 4, 3, 2, 1)));
+
+        long startTime = System.currentTimeMillis();
+
         List<List<Integer>> result = sortArray.mergeSort(true);
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        long expected_time = 50 ; // in ms
+        // System.out.println("Elapsed time for merge sort: " + elapsedTime + " ms");
 
         List<List<Integer>> expected = new ArrayList<>(Arrays.asList(
                 new ArrayList<>(Arrays.asList(6, 6, 5, 4, 3, 2, 1)),
@@ -66,8 +81,8 @@ public class MergeSortTest {
                 new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 2, 3)),
                 new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 3)),
                 new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7))
-
         ));
+        assertTrue(elapsedTime <= expected_time );
         assertEquals(expected, result);
     }
 
@@ -101,18 +116,28 @@ public class MergeSortTest {
             arr.add(i);
         }
         SortArray sortArray = new SortArray(arr);
+
+        long startTime = System.currentTimeMillis();
+
         List<List<Integer>> result = sortArray.mergeSort(false);
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        long expected_time = 50 ; // in ms
+        // System.out.println("Elapsed time for merge sort: " + elapsedTime + " ms");
 
         List<Integer> ans = new ArrayList<>();
         for (int i = 1; i <= 30; i++) {
             ans.add(i);
         }
         List<List<Integer>> expected = new ArrayList<>(Arrays.asList(ans));
+        assertTrue(elapsedTime <= expected_time );
+
         assertEquals(expected, result);
     }
-
+    
     @Test
-    public void mergeNegativeCase() {
+    public void mergeMixedCase() {
         SortArray sortArray = new SortArray(Arrays.asList(-10, 0, 10, 1, -55, 105, 2, 3, 1, 4));
         List<List<Integer>> sortedLists = sortArray.mergeSort(false);
         List<Integer> expectedSorted = Arrays.asList(-55, -10, 0, 1, 1, 2, 3, 4, 10, 105);
@@ -152,12 +177,81 @@ public class MergeSortTest {
     }
 
     @Test
-    public void testMergeSortWithRandomLargeArray() {
+    public void mergeLargeRandomArrayCase() {
         List<Integer> array = MeanTime.generateRandomArray(10000);
         List<Integer> expected = new ArrayList<>(array);
         sort(expected);
         SortArray sortArray = new SortArray(array);
         List<List<Integer>> sortedLists = sortArray.mergeSort(false);
         assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void mergeSmallRandomArrayCase() {
+        List<Integer> array = MeanTime.generateRandomArray(10);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.mergeSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void mergeSameNumbersCase() {
+        SortArray sortArray = new SortArray(Arrays.asList(999,999,999,999,999,999,999,999,999,999));
+        List<List<Integer>> sortedLists = sortArray.mergeSort(false);
+        List<Integer> expectedSorted = Arrays.asList(999,999,999,999,999,999,999,999,999,999);
+        assertEquals(expectedSorted, sortedLists.get(0));
+    }
+    
+    @Test
+    public void mergeTwoNumbersCaseWithSteps() {
+        SortArray sortArray = new SortArray(Arrays.asList(1000,999));
+        List<List<Integer>> sortedLists = sortArray.mergeSort(true);
+        List<List<Integer>> expectedSorted = new ArrayList<>(Arrays.asList(
+            new ArrayList<>(Arrays.asList(999,999)),
+            new ArrayList<>(Arrays.asList(999,1000))
+        ));
+           
+        assertEquals(expectedSorted, sortedLists);
+    }
+
+    @Test
+    public void mergeSimpleWithSteps() {
+        SortArray sortArray = new SortArray(Arrays.asList(-1, 0, 2, 4, 321, -100, 0, 78, 12));
+        List<List<Integer>> actualSteps = sortArray.mergeSort(true);
+        List<List<Integer>> expectedSteps = new ArrayList<>();
+        expectedSteps.add(Arrays.asList(-1, 0, 2, 4, 321, -100, 0, 78, 12));
+        expectedSteps.add(Arrays.asList(-1, 0, 2, 4, 321, -100, 0, 12, 12));
+        expectedSteps.add(Arrays.asList(-1, 0, 2, 4, 321, -100, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, 0, 2, 4, 321, -100, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 2, 4, 321, -100, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 4, 321, -100, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 0, 321, -100, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 0, 2, -100, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 0, 2, 4, 0, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 0, 2, 4, 12, 12, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 0, 2, 4, 12, 78, 78));
+        expectedSteps.add(Arrays.asList(-100, -1, 0, 0, 2, 4, 12, 78, 321));
+        assertEquals(expectedSteps, actualSteps);
+    }
+    
+    @Test 
+    public void mergeRandomWithBigSizeCase() {
+        List<Integer> array = MeanTime.generateRandomArray(30000);
+        SortArray sortArray = new SortArray(array);
+
+        long startTime = System.currentTimeMillis();
+        
+        List<List<Integer>> sortedLists = sortArray.mergeSort(false);
+        
+        long stopTime = System.currentTimeMillis();
+        long elapsed_time=stopTime-startTime;
+        long expected_time = 100 ; // in ms
+        // System.out.println("Elapsed time: " + elapsed_time + " ms");
+        List<Integer> expectedSorted = new ArrayList<>(array);
+        sort(expectedSorted);
+        assertTrue(elapsed_time <= expected_time );
+        assertEquals(expectedSorted, sortedLists.get(sortedLists.size() - 1));           
     }
 }
