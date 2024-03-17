@@ -6,12 +6,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class RangeExceededException extends Exception {
-    public RangeExceededException() {
-        super("Range of numbers exceeds the limits of the algorithm");
-    }
-}
-
 public class SortArray {
 
     private List<Integer> numbers;

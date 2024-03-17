@@ -35,15 +35,6 @@ public class BubbleSortTest {
      * all same number (big/small)
      * add more simple with/without steps (like 2 more)
      * n=2
-     * ---------------------------------
-     * TODO: Counting Sort Unit Tests
-     * add 2 more simple with/without steps
-     * n=2
-     * random small n (using Random)
-     * random  (using Random) large ns && time check (without steps)
-     * random using Random large numbers && time check (without steps)
-     * time check in worst cases
-     * mixed negative with positive
      */
 
     @Test
