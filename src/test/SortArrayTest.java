@@ -1,5 +1,3 @@
-package test;
-
 import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 import static org.junit.Assert.assertEquals;
@@ -10,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-
-import main.SortArray;
 
 public class SortArrayTest {
 

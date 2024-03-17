@@ -1,8 +1,5 @@
-package main;
-
 import java.util.*;
 import java.io.*;
-import main.SortArray;
 
 public class MeanTime {
     /**
