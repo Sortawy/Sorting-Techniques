@@ -6,8 +6,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import main.MeanTime;
 import org.junit.Test;
 
 import main.SortArray;
@@ -368,4 +370,89 @@ public class SortArrayTest {
         List<List<Integer>> sortedLists = sortArray.countingSort(false);
         assertNull(sortedLists);
     }
+
+    @Test
+    public void testBubbleSortPositiveNegativeArrayWithSteps() {
+        SortArray sortArray = new SortArray(Arrays.asList(-1, 5, -6, 12, -100, -1));
+        List<List<Integer>> actualSteps = sortArray.bubbleSort(true);
+        List<List<Integer>> expectedSteps = new ArrayList<>();
+
+        expectedSteps.add(Arrays.asList(-1, 5, -6, 12, -100, -1));
+        expectedSteps.add(Arrays.asList(-1, -6, 5, 12, -100, -1));
+        expectedSteps.add(Arrays.asList(-1, -6, 5, -100, 12, -1));
+        expectedSteps.add(Arrays.asList(-1, -6, 5, -100, -1, 12));
+        expectedSteps.add(Arrays.asList(-6, -1, 5, -100, -1, 12));
+        expectedSteps.add(Arrays.asList(-6, -1, -100, 5, -1, 12));
+        expectedSteps.add(Arrays.asList(-6, -1, -100, -1, 5, 12));
+        expectedSteps.add(Arrays.asList(-6, -100, -1, -1, 5, 12));
+        expectedSteps.add(Arrays.asList(-100, -6, -1, -1, 5, 12));
+        assertEquals(expectedSteps, actualSteps);
+    }
+
+    @Test
+    public void testBubbleSortWithRandomLargeArray() {
+        List<Integer> array = MeanTime.generateRandomArray(10000);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void testMergeSortWithRandomLargeArray() {
+        List<Integer> array = MeanTime.generateRandomArray(10000);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.mergeSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void testCountingSortWithRandomLargeArray() {
+        List<Integer> array = MeanTime.generateRandomArray(10000);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.countingSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void testBubbleSortWithRandomSmallTwoElementArray() {
+        List<Integer> array = MeanTime.generateRandomArray(2);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void testBubbleSortWithRandomPositiveNegativeArrayBestCase() {
+        List<Integer> array = new ArrayList<>();
+        for(int i = 10000; i >= -1000; i--) {
+            array.add(i);
+        }
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
+    @Test
+    public void testBubbleSortWithRandomPositiveNegativeArrayWorstCase() {
+        List<Integer> array = new ArrayList<>();
+        for(int i = -1000; i <= 10000; i++) {
+            array.add(i);
+        }
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        assertEquals(expected, sortedLists.get(0));
+    }
+
 }
