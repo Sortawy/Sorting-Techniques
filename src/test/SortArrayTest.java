@@ -15,6 +15,37 @@ import org.junit.Test;
 import main.SortArray;
 
 public class SortArrayTest {
+    /**
+     * TODO: Bubble Sort Unit Tests
+     * pure random (small size) (check only sort) (Using Random)
+     * random with medium size (check only sort)    (Using Random)
+     * random with big size (check only sort) (check time too) (Using Random)
+     * all same number(big/small)(with/without)steps, (large/small n)
+     * n=1
+     * n=2
+     * add more simple (with and without steps) ( 2 more )
+     * array with all negative
+     * array with mixed negative and positive
+     * array with very large numbers
+     * array with very negative numbers
+     * ---------------------------------
+     * TODO: Merge Sort Unit Tests
+     * large n's random && time check (without steps) (using Random)
+     * random small n (using Random)
+     * time check in worst cases
+     * all same number (big/small)
+     * add more simple with/without steps (like 2 more)
+     * n=2
+     * ---------------------------------
+     * TODO: Counting Sort Unit Tests
+     * add 2 more simple with/without steps
+     * n=2
+     * random small n (using Random)
+     * random  (using Random) large ns && time check (without steps)
+     * random using Random large numbers && time check (without steps)
+     * time check in worst cases
+     * mixed negative with positive
+     */
 
     @Test
     public void simpleTestOneBubbleSort() {
@@ -120,7 +151,7 @@ public class SortArrayTest {
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         long stopTime = System.currentTimeMillis();
         long elapsed_time=stopTime-startTime;
-        long expected_time = 4000 ; // in ms
+        long expected_time = 3500 ; // in ms
         assertTrue(elapsed_time <= expected_time );
         reverse(expectedSorted);
         assertEquals(expectedSorted, sortedLists.get(0));
@@ -245,8 +276,8 @@ public class SortArrayTest {
         List<Integer> expectedSorted = Arrays.asList(-55, -10, 0, 1, 1, 2, 3, 4, 10, 105);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
-    
-   
+
+
     @Test
     public void mergeGreatNumbersCase() {
         SortArray sortArray = new SortArray(Arrays.asList(1000520,115208,889532,214387,1000520,115208));
