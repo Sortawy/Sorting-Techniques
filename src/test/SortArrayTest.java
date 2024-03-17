@@ -27,7 +27,7 @@ public class SortArrayTest {
     done * array with all negative
     done * array with mixed negative and positive
     done * array with very large numbers
-     * array with very negative numbers
+    done * array with very negative numbers
      * ---------------------------------
      * TODO: Merge Sort Unit Tests
      * large n's random && time check (without steps) (using Random)
@@ -223,11 +223,15 @@ public class SortArrayTest {
     
     @Test
     public void smallNumbersTestCaseBubbleSort() {
-        SortArray sortArray = new SortArray(Arrays.asList(-524812, -967432, -745213, -7843160, -784554, -745213));
+        SortArray sortArray = new SortArray(Arrays.asList(-5555555, -9999999, -4444444, -7777777, -6666666, -8888888));
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
-        List<Integer> expectedSorted = Arrays.asList(-7843160, -967432, -784554, -745213, -745213, -524812);
+        List<Integer> expectedSorted = Arrays.asList(-9999999, -8888888, -7777777, -6666666, -5555555, -4444444);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
+    
+  
+
+
 
     @Test
     public void mergeAverageSteps() {
