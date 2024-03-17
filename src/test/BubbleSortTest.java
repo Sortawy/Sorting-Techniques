@@ -16,17 +16,17 @@ import org.junit.Test;
 public class BubbleSortTest {
 /**
      * TODO: Bubble Sort Unit Tests
-     * pure random (small size) (check only sort) (Using Random)
-     * random with medium size (check only sort)    (Using Random)
+    done * pure random (small size) (check only sort) (Using Random)
+    done * random with medium size (check only sort)    (Using Random)
      * random with big size (check only sort) (check time too) (Using Random)
      * all same number(big/small)(with/without)steps, (large/small n)
     done * n=1 
     done * n=2
-     * add more simple (with and without steps) ( 2 more )
+    done * add more simple (with and without steps) ( 2 more )
     done * array with all negative
     done * array with mixed negative and positive
     done * array with very large numbers
-     * array with very negative numbers
+    done * array with very negative numbers
      * ---------------------------------
      * TODO: Merge Sort Unit Tests
      * large n's random && time check (without steps) (using Random)
@@ -171,7 +171,6 @@ public class BubbleSortTest {
     }
 
 
-    /////////////////////////////basmeta///////////////////////////
     @Test
     public void oneNumberTestCaseBubbleSort() {
         SortArray sortArray = new SortArray(Arrays.asList(1));
@@ -222,12 +221,73 @@ public class BubbleSortTest {
     
     @Test
     public void smallNumbersTestCaseBubbleSort() {
-        SortArray sortArray = new SortArray(Arrays.asList(-524812, -967432, -745213, -7843160, -784554, -745213));
+        SortArray sortArray = new SortArray(Arrays.asList(-5555555, -9999999, -4444444, -7777777, -6666666, -8888888));
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
-        List<Integer> expectedSorted = Arrays.asList(-7843160, -967432, -784554, -745213, -745213, -524812);
+        List<Integer> expectedSorted = Arrays.asList(-9999999, -8888888, -7777777, -6666666, -5555555, -4444444);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
+    
+    @Test
+    public void simpleNumbersTestCaseBubbleSortWithSteps() {
+        SortArray sortArray = new SortArray(Arrays.asList(5, 2, 3, 1, 4));
+        List<List<Integer>> actualSteps = sortArray.bubbleSort(true);
+        List<List<Integer>> expectedSteps = new ArrayList<>();
+        expectedSteps.add(Arrays.asList(5, 2, 3, 1, 4));
+        expectedSteps.add(Arrays.asList(2, 5, 3, 1, 4));
+        expectedSteps.add(Arrays.asList(2, 3, 5, 1, 4));
+        expectedSteps.add(Arrays.asList(2, 3, 1, 5, 4));
+        expectedSteps.add(Arrays.asList(2, 3, 1, 4, 5));
+        expectedSteps.add(Arrays.asList(2, 1, 3, 4, 5));
+        expectedSteps.add(Arrays.asList(1, 2, 3, 4, 5));
+        assertEquals(expectedSteps, actualSteps);
+    }
+    @Test
+    public void allSameNumbersTestCaseBubbleSortWithSteps() {
+        SortArray sortArray = new SortArray(Arrays.asList(1, 1, 1, 1, 1));
+        List<List<Integer>> actualSteps = sortArray.bubbleSort(true);
+        List<List<Integer>> expectedSteps = new ArrayList<>();
+        expectedSteps.add(Arrays.asList(1, 1, 1, 1, 1));
+        assertEquals(expectedSteps, actualSteps);
+    }
+  
+    @Test
+    public void simpleNumbersTest2CaseBubbleSortWithSteps(){
+        SortArray sortArray = new SortArray(Arrays.asList(4, 5, 6, 7, 1, 2, 3));
+        List<List<Integer>> actualSteps = sortArray.bubbleSort(true);
+        List<List<Integer>> expectedSteps = new ArrayList<>();
+        expectedSteps.add(Arrays.asList(4, 5, 6, 7, 1, 2, 3));
+        expectedSteps.add(Arrays.asList(4, 5, 6, 1, 7, 2, 3));
+        expectedSteps.add(Arrays.asList(4, 5, 6, 1, 2, 7, 3));
+        expectedSteps.add(Arrays.asList(4, 5, 6, 1, 2, 3, 7));
+        expectedSteps.add(Arrays.asList(4, 5, 1, 6, 2, 3, 7));
+        expectedSteps.add(Arrays.asList(4, 5, 1, 2, 6, 3, 7));
+        expectedSteps.add(Arrays.asList(4, 5, 1, 2, 3, 6, 7));
+        expectedSteps.add(Arrays.asList(4, 1, 5, 2, 3, 6, 7));
+        expectedSteps.add(Arrays.asList(4, 1, 2, 5, 3, 6, 7));
+        expectedSteps.add(Arrays.asList(4, 1, 2, 3, 5, 6, 7));
+        expectedSteps.add(Arrays.asList(1, 4, 2, 3, 5, 6, 7));
+        expectedSteps.add(Arrays.asList(1, 2, 4, 3, 5, 6, 7));
+        expectedSteps.add(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+        assertEquals(expectedSteps, actualSteps);
+    }
+    @Test 
+    public void randomWithBigSizeBubbleSort() {
+        List<Integer> array = MeanTime.generateRandomArray(30000);
+        SortArray sortArray = new SortArray(array);
 
+        long startTime = System.currentTimeMillis();
+        
+        List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
+        
+        long stopTime = System.currentTimeMillis();
+        long elapsed_time=stopTime-startTime;
+        long expected_time = 4000 ; // in ms
+        // System.out.println("Elapsed time: " + elapsed_time + " ms");
+        List<Integer> expectedSorted = new ArrayList<>(array);
+        sort(expectedSorted);
+        assertTrue(elapsed_time <= expected_time );
+        assertEquals(expectedSorted, sortedLists.get(0));           
+    }
     @Test
     public void testBubbleSortPositiveNegativeArrayWithSteps() {
         SortArray sortArray = new SortArray(Arrays.asList(-1, 5, -6, 12, -100, -1));
@@ -291,5 +351,5 @@ public class BubbleSortTest {
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         assertEquals(expected, sortedLists.get(0));
     }
-
+  
 }
