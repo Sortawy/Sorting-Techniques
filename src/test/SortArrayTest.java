@@ -1,5 +1,3 @@
-package test;
-
 import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 import static org.junit.Assert.*;
@@ -11,8 +9,6 @@ import java.util.List;
 
 import main.MeanTime;
 import org.junit.Test;
-
-import main.SortArray;
 
 public class SortArrayTest {
     /**
