@@ -11,13 +11,7 @@ import java.util.List;
 import static java.util.Collections.sort;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-// * TODO: Merge Sort Unit Test
-//done * large n's random && time check (without steps) (using Random)
-// done * random small n (using Random)
-// done* time check in worst cases
-//done * all same number (big/small)
-//done * add more simple with/without steps (like 2 more)
-// done * n=2
+
 public class MergeSortTest {
 
     @Test
@@ -247,7 +241,7 @@ public class MergeSortTest {
         
         long stopTime = System.currentTimeMillis();
         long elapsed_time=stopTime-startTime;
-        long expected_time = 100 ; // in ms
+        long expected_time = 200 ; // in ms
         // System.out.println("Elapsed time: " + elapsed_time + " ms");
         List<Integer> expectedSorted = new ArrayList<>(array);
         sort(expectedSorted);

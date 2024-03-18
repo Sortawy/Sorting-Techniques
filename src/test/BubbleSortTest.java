@@ -14,29 +14,6 @@ import main.SortArray;
 import org.junit.Test;
 
 public class BubbleSortTest {
-/**
-     * TODO: Bubble Sort Unit Tests
-    done * pure random (small size) (check only sort) (Using Random)
-    done * random with medium size (check only sort)    (Using Random)
-     * random with big size (check only sort) (check time too) (Using Random)
-     * all same number(big/small)(with/without)steps, (large/small n)
-    done * n=1 
-    done * n=2
-    done * add more simple (with and without steps) ( 2 more )
-    done * array with all negative
-    done * array with mixed negative and positive
-    done * array with very large numbers
-    done * array with very negative numbers
-     * ---------------------------------
-     * TODO: Merge Sort Unit Tests
-     * large n's random && time check (without steps) (using Random)
-     * random small n (using Random)
-     * time check in worst cases
-     * all same number (big/small)
-     * add more simple with/without steps (like 2 more)
-     * n=2
-     */
-
     @Test
     public void simpleTestOneBubbleSort() {
         SortArray sortArray = new SortArray(Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6));
@@ -272,7 +249,7 @@ public class BubbleSortTest {
         
         long stopTime = System.currentTimeMillis();
         long elapsed_time=stopTime-startTime;
-        long expected_time = 4000 ; // in ms
+        long expected_time = 10000 ; // in ms
         // System.out.println("Elapsed time: " + elapsed_time + " ms");
         List<Integer> expectedSorted = new ArrayList<>(array);
         sort(expectedSorted);

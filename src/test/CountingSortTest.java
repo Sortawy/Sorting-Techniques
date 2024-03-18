@@ -1,5 +1,3 @@
-package test;
-
 import main.MeanTime;
 import main.SortArray;
 import org.junit.Test;
