@@ -12,13 +12,13 @@ df = pd.DataFrame(data)
 
 plt.figure(figsize=(100, 6))
 
-plt.plot(df["Array Size"], df["Bubble Sort"], label="Bubble Sort")
-plt.plot(df["Array Size"], df["Merge Sort"], label="Merge Sort")
-plt.plot(df["Array Size"], df["Counting Sort"], label="Counting Sort")
+plt.plot(df["Array Size"], df["Bubble Sort"], label="Bubble Sort", color="blue")
+plt.plot(df["Array Size"], df["Merge Sort"], label="Merge Sort", color="green")
+plt.plot(df["Array Size"], df["Counting Sort"], label="Counting Sort", color="red")
 
 plt.title("Sorting Algorithms Performance")
 plt.xlabel("Array Size")
-plt.ylabel("Time (seconds)")
+plt.ylabel("Time (milliseconds)")
 plt.grid(True)
 plt.legend()
 
@@ -27,9 +27,70 @@ plt.yscale("log")
 
 plt.show()
 
+# Bubble Sort
+plt.figure(figsize=(100, 6))
+plt.plot(df["Array Size"], df["Bubble Sort"], label="Bubble Sort", color="blue")
+plt.title("Bubble Sort")
+plt.xlabel("Array Size")
+plt.ylabel("Time (milliseconds)")
+plt.grid(True)
+plt.legend()
+plt.yscale("log")
+plt.show()
 
-# import pandas as pd
-# import matplotlib.pyplot as plt
+# Merge Sort
+plt.figure(figsize=(100, 6))
+plt.plot(df["Array Size"], df["Merge Sort"], label="Merge Sort", color="green")
+plt.title("Merge Sort")
+plt.xlabel("Array Size")
+plt.ylabel("Time (milliseconds)")
+plt.grid(True)
+plt.legend()
+plt.yscale("log")
+plt.show()
+
+# Counting Sort
+plt.figure(figsize=(100, 6))
+plt.plot(df["Array Size"], df["Counting Sort"], label="Counting Sort", color="red")
+plt.title("Counting Sort")
+plt.xlabel("Array Size")
+plt.ylabel("Time (milliseconds)")
+plt.grid(True)
+plt.legend()
+plt.yscale("log")
+plt.show()
+
+
+fig, axs = plt.subplots(3, 1, figsize=(10, 15), gridspec_kw={'hspace': 0.4})
+
+# Bubble Sort
+axs[0].plot(df["Array Size"], df["Bubble Sort"], label="Bubble Sort", color="blue")
+axs[0].set_title("Bubble Sort")
+axs[0].set_xlabel("Array Size")
+axs[0].set_ylabel("Time (milliseconds)")
+axs[0].grid(True)
+axs[0].set_yscale("log")
+
+# Merge Sort
+axs[1].plot(df["Array Size"], df["Merge Sort"], label="Merge Sort", color="green")
+axs[1].set_title("Merge Sort")
+axs[1].set_xlabel("Array Size")
+axs[1].set_ylabel("Time (milliseconds)")
+axs[1].grid(True)
+axs[1].set_yscale("log")
+
+# Counting Sort
+axs[2].plot(df["Array Size"], df["Counting Sort"], label="Counting Sort", color="red")
+axs[2].set_title("Counting Sort")
+axs[2].set_xlabel("Array Size")
+axs[2].set_ylabel("Time (milliseconds)")
+axs[2].grid(True)
+axs[2].set_yscale("log")
+
+plt.show()
+
+
+# Extra data
 
 # data = {
 #     "Array Size": [25, 75, 250, 750, 1250, 3000, 7500, 15000, 25000, 75000, 90000],
@@ -37,30 +98,3 @@ plt.show()
 #     "Merge Sort": [0.161, 0.123, 0.362, 0.914, 3.121, 2.733, 5.759, 9.403, 15.667, 47.595, 60.426],
 #     "Counting Sort": [0.090, 0.081, 0.204, 0.213, 0.298, 0.559, 0.942, 1.689, 1.712, 7.507, 6.900]
 # }
-
-# df = pd.DataFrame(data)
-
-# fig, axs = plt.subplots(3, 1, figsize=(10, 15), gridspec_kw={'hspace': 0.4})
-
-# axs[0].plot(df["Array Size"], df["Bubble Sort"], label="Bubble Sort", color="blue")
-# axs[0].set_title("Bubble Sort")
-# axs[0].set_xlabel("Array Size")
-# axs[0].set_ylabel("Time (seconds)")
-# axs[0].grid(True)
-# axs[0].set_yscale("log")
-
-# axs[1].plot(df["Array Size"], df["Merge Sort"], label="Merge Sort", color="green")
-# axs[1].set_title("Merge Sort")
-# axs[1].set_xlabel("Array Size")
-# axs[1].set_ylabel("Time (seconds)")
-# axs[1].grid(True)
-# axs[1].set_yscale("log")
-
-# axs[2].plot(df["Array Size"], df["Counting Sort"], label="Counting Sort", color="red")
-# axs[2].set_title("Counting Sort")
-# axs[2].set_xlabel("Array Size")
-# axs[2].set_ylabel("Time (seconds)")
-# axs[2].grid(True)
-# axs[2].set_yscale("log")
-
-# plt.show()

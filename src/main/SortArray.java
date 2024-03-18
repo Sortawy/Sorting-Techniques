@@ -1,5 +1,3 @@
-package main;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,61 +59,59 @@ public class SortArray {
         return steps;
     }
 
-    
-    void merge(List<Integer>arr,boolean withSteps,List<List<Integer>> steps,int start, int mid,int end) 
-    {
-            int n1 = mid - start + 1;
-            int n2 = end - mid;
-            List<Integer> leftAr = new ArrayList<>();
-            List<Integer> rightAr = new ArrayList<>();
+    void merge(List<Integer> arr, boolean withSteps, List<List<Integer>> steps, int start, int mid, int end) {
+        int n1 = mid - start + 1;
+        int n2 = end - mid;
+        List<Integer> leftAr = new ArrayList<>();
+        List<Integer> rightAr = new ArrayList<>();
 
-            for (int i = 0; i < n1; ++i)
+        for (int i = 0; i < n1; ++i)
             leftAr.add(arr.get(start + i));
-                
-            for (int j = 0; j < n2; ++j)
+
+        for (int j = 0; j < n2; ++j)
             rightAr.add(arr.get(mid + 1 + j));
 
-            int i = 0, j = 0;
-            int k = start;
-            while (i < n1 && j < n2) {
-                if (leftAr.get(i) <= rightAr.get(j)) {
-                    arr.set(k, leftAr.get(i));
-                    i++;
-                }
-                else {
-                    arr.set(k, rightAr.get(j));
-                    j++;
-                }
-                if(withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
-                    steps.add(new ArrayList<>(arr));
-
-                k++;
-            }
-            while (i < n1) {
+        int i = 0, j = 0;
+        int k = start;
+        while (i < n1 && j < n2) {
+            if (leftAr.get(i) <= rightAr.get(j)) {
                 arr.set(k, leftAr.get(i));
                 i++;
-                k++;
-                if(withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
-                 steps.add(new ArrayList<>(arr));
-            }
-            while (j < n2) {
+            } else {
                 arr.set(k, rightAr.get(j));
                 j++;
-                k++;
-                if(withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
-                 steps.add(new ArrayList<>(arr));
             }
-            
+            if (withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
+                steps.add(new ArrayList<>(arr));
+
+            k++;
+        }
+        while (i < n1) {
+            arr.set(k, leftAr.get(i));
+            i++;
+            k++;
+            if (withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
+                steps.add(new ArrayList<>(arr));
+        }
+        while (j < n2) {
+            arr.set(k, rightAr.get(j));
+            j++;
+            k++;
+            if (withSteps && ((steps.size() == 0) || !steps.get(steps.size() - 1).equals(arr)))
+                steps.add(new ArrayList<>(arr));
+        }
+
     }
 
-    List<List<Integer>> mergeSortHelper(List<Integer> arr, boolean withSteps, List<List<Integer>> steps,int start,int end ) {
-        if(arr.size()<=1)
+    List<List<Integer>> mergeSortHelper(List<Integer> arr, boolean withSteps, List<List<Integer>> steps, int start,
+            int end) {
+        if (arr.size() <= 1)
             return Arrays.asList(arr);
 
         if (start < end) {
-            int mid = start + (end - start) /2;
-            mergeSortHelper(arr,withSteps,steps, start, mid);
-            mergeSortHelper(arr,withSteps,steps, mid + 1, end);
+            int mid = start + (end - start) / 2;
+            mergeSortHelper(arr, withSteps, steps, start, mid);
+            mergeSortHelper(arr, withSteps, steps, mid + 1, end);
             merge(arr, withSteps, steps, start, mid, end);
         }
         if (withSteps)
@@ -123,16 +119,17 @@ public class SortArray {
         else
             return Arrays.asList(arr);
     }
-    
+
     public List<List<Integer>> mergeSort(boolean withSteps) {
-        List<Integer> arr=new ArrayList<>(this.numbers);
+        List<Integer> arr = new ArrayList<>(this.numbers);
         List<List<Integer>> steps = new ArrayList<>();
-        List<List<Integer>> result = mergeSortHelper(arr,withSteps, steps,0,arr.size()-1);
+        List<List<Integer>> result = mergeSortHelper(arr, withSteps, steps, 0, arr.size() - 1);
         if (withSteps)
             return steps;
         else
             return result;
     }
+
     /**
      * Method implements Counting Sort Algorithm to sort the array in time
      * complexity O(n)
@@ -197,9 +194,10 @@ public class SortArray {
                 }
                 line = buffReader.readLine();
             }
+            buffReader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-   
+
 }
