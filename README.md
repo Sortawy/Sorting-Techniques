@@ -80,7 +80,6 @@ Three fundamental sorting techniques are implemented:
 | Merge Sort | $O(n \log{n})$ | $Θ(n\log{n})$ | $Ω(n\log{n})$ | $O(n)$ |
 | Counting Sort         $(k = max - min )$ | $O(n + k)$ | $Θ(n + k)$ | $Ω(n + k)$ | $O(n + k)$ |
 
----
 
 ## Command Line Interface
 
