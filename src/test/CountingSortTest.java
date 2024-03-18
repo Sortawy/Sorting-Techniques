@@ -1,5 +1,3 @@
-import main.MeanTime;
-import main.SortArray;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -76,7 +74,7 @@ public class CountingSortTest {
     }
 
     @Test
-    public void testCountingSortWithSmallArray() {   // n = 2
+    public void testCountingSortWithSmallArray() { // n = 2
         SortArray sortArray = new SortArray(Arrays.asList(5, 2));
         List<List<Integer>> sortedLists = sortArray.countingSort(true);
         List<List<Integer>> expectedSteps = new ArrayList<>();
@@ -163,7 +161,7 @@ public class CountingSortTest {
     @Test
     public void testCountingSortWithRandomLargeArrayMixedPositiveAndNegative() {
         List<Integer> array = new ArrayList<>();
-        for(int i = -1000; i <= 10000; i++) {
+        for (int i = -1000; i <= 10000; i++) {
             array.add(i);
         }
         Collections.shuffle(array);
@@ -176,36 +174,36 @@ public class CountingSortTest {
 
     @Test
     public void testCountingSortWithTimeCheckWithRandomLargeNumbers() {
-          List<Integer> array = new ArrayList<>();
-          for(int i = 1; i < 100; i++) {
-                array.add(i * 1000000);
-          }
-          Collections.shuffle(array);
-          List<Integer> expected = new ArrayList<>(array);
-          sort(expected);
-          SortArray sortArray = new SortArray(array);
-          long startTime = System.currentTimeMillis();
-          List<List<Integer>> sortedLists = sortArray.countingSort(false);
-          long stopTime = System.currentTimeMillis();
-          long elapsedTime = stopTime - startTime;
-          long expectedElapsedTime = 1000;
-          assertTrue(elapsedTime <= expectedElapsedTime );
-          assertEquals(expected, sortedLists.get(0));
+        List<Integer> array = new ArrayList<>();
+        for (int i = 1; i < 100; i++) {
+            array.add(i * 1000000);
+        }
+        Collections.shuffle(array);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        long startTime = System.currentTimeMillis();
+        List<List<Integer>> sortedLists = sortArray.countingSort(false);
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        long expectedElapsedTime = 1000;
+        assertTrue(elapsedTime <= expectedElapsedTime);
+        assertEquals(expected, sortedLists.get(0));
     }
 
     @Test
     public void testCountingSortWithTimeCheckWithRandomLargeSize() {
-            List<Integer> array = MeanTime.generateRandomArray(1000000);
-            List<Integer> expected = new ArrayList<>(array);
-            sort(expected);
-            SortArray sortArray = new SortArray(array);
-            long startTime = System.currentTimeMillis();
-            List<List<Integer>> sortedLists = sortArray.countingSort(false);
-            long stopTime = System.currentTimeMillis();
-            long elapsedTime = stopTime - startTime;
-            long expectedElapsedTime = 1000;
-            assertTrue(elapsedTime <= expectedElapsedTime );
-            assertEquals(expected, sortedLists.get(0));
+        List<Integer> array = MeanTime.generateRandomArray(1000000);
+        List<Integer> expected = new ArrayList<>(array);
+        sort(expected);
+        SortArray sortArray = new SortArray(array);
+        long startTime = System.currentTimeMillis();
+        List<List<Integer>> sortedLists = sortArray.countingSort(false);
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        long expectedElapsedTime = 1000;
+        assertTrue(elapsedTime <= expectedElapsedTime);
+        assertEquals(expected, sortedLists.get(0));
     }
 
     @Test
@@ -219,7 +217,7 @@ public class CountingSortTest {
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         long expectedElapsedTime = 1000;
-        assertTrue(elapsedTime <= expectedElapsedTime );
+        assertTrue(elapsedTime <= expectedElapsedTime);
         assertEquals(expected, sortedLists.get(0));
     }
 

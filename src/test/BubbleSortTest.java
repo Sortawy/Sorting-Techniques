@@ -1,5 +1,3 @@
-package test;
-
 import static java.util.Collections.reverse;
 import static java.util.Collections.sort;
 import static org.junit.Assert.*;
@@ -9,8 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import main.MeanTime;
-import main.SortArray;
 import org.junit.Test;
 
 public class BubbleSortTest {
@@ -100,9 +96,9 @@ public class BubbleSortTest {
         long startTime = System.currentTimeMillis();
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         long stopTime = System.currentTimeMillis();
-        long elapsed_time=stopTime-startTime;
-        long expected_time = 1000 ; // in ms
-        assertTrue(elapsed_time <= expected_time );
+        long elapsed_time = stopTime - startTime;
+        long expected_time = 1000; // in ms
+        assertTrue(elapsed_time <= expected_time);
         reverse(expectedSorted);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
@@ -117,9 +113,9 @@ public class BubbleSortTest {
         long startTime = System.currentTimeMillis();
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         long stopTime = System.currentTimeMillis();
-        long elapsed_time=stopTime-startTime;
-        long expected_time = 3500 ; // in ms
-        assertTrue(elapsed_time <= expected_time );
+        long elapsed_time = stopTime - startTime;
+        long expected_time = 3500; // in ms
+        assertTrue(elapsed_time <= expected_time);
         reverse(expectedSorted);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
@@ -137,7 +133,6 @@ public class BubbleSortTest {
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         assertEquals(List.of(List.of()), sortedLists);
     }
-
 
     @Test
     public void oneNumberTestCaseBubbleSort() {
@@ -162,7 +157,7 @@ public class BubbleSortTest {
         for (int i = -1; i >= -5000; i--) {
             numbers.add(i);
         }
-        Collections.shuffle(numbers); 
+        Collections.shuffle(numbers);
         SortArray sortArray = new SortArray(numbers);
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         List<Integer> expectedSorted = new ArrayList<>(numbers);
@@ -173,20 +168,24 @@ public class BubbleSortTest {
 
     @Test
     public void mixedNumbersTestCaseBubbleSort() {
-        SortArray sortArray = new SortArray(Arrays.asList(-1, 5, -6, 12, -100, -1, 15, -20, 25, -30, 35, -40, 45, -50, 55, -60, 65, -70, 75, -80, 85));
+        SortArray sortArray = new SortArray(Arrays.asList(-1, 5, -6, 12, -100, -1, 15, -20, 25, -30, 35, -40, 45, -50,
+                55, -60, 65, -70, 75, -80, 85));
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
-        List<Integer> expectedSorted = Arrays.asList(-100, -80, -70, -60, -50, -40, -30, -20, -6, -1, -1, 5, 12, 15, 25, 35, 45, 55, 65, 75, 85);
+        List<Integer> expectedSorted = Arrays.asList(-100, -80, -70, -60, -50, -40, -30, -20, -6, -1, -1, 5, 12, 15, 25,
+                35, 45, 55, 65, 75, 85);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
-    
+
     @Test
     public void greatNumbersTestCaseBubbleSort() {
-        SortArray sortArray = new SortArray(Arrays.asList(2000520, 215208, 1889532, 314387, 2000520, 215208, 3000000, 4000000, 5000000, 6000000, 7000000));
+        SortArray sortArray = new SortArray(Arrays.asList(2000520, 215208, 1889532, 314387, 2000520, 215208, 3000000,
+                4000000, 5000000, 6000000, 7000000));
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
-        List<Integer> expectedSorted = Arrays.asList(215208, 215208, 314387, 1889532, 2000520, 2000520, 3000000, 4000000, 5000000, 6000000, 7000000);
+        List<Integer> expectedSorted = Arrays.asList(215208, 215208, 314387, 1889532, 2000520, 2000520, 3000000,
+                4000000, 5000000, 6000000, 7000000);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
-    
+
     @Test
     public void smallNumbersTestCaseBubbleSort() {
         SortArray sortArray = new SortArray(Arrays.asList(-5555555, -9999999, -4444444, -7777777, -6666666, -8888888));
@@ -194,7 +193,7 @@ public class BubbleSortTest {
         List<Integer> expectedSorted = Arrays.asList(-9999999, -8888888, -7777777, -6666666, -5555555, -4444444);
         assertEquals(expectedSorted, sortedLists.get(0));
     }
-    
+
     @Test
     public void simpleNumbersTestCaseBubbleSortWithSteps() {
         SortArray sortArray = new SortArray(Arrays.asList(5, 2, 3, 1, 4));
@@ -209,6 +208,7 @@ public class BubbleSortTest {
         expectedSteps.add(Arrays.asList(1, 2, 3, 4, 5));
         assertEquals(expectedSteps, actualSteps);
     }
+
     @Test
     public void allSameNumbersTestCaseBubbleSortWithSteps() {
         SortArray sortArray = new SortArray(Arrays.asList(1, 1, 1, 1, 1));
@@ -217,9 +217,9 @@ public class BubbleSortTest {
         expectedSteps.add(Arrays.asList(1, 1, 1, 1, 1));
         assertEquals(expectedSteps, actualSteps);
     }
-  
+
     @Test
-    public void simpleNumbersTest2CaseBubbleSortWithSteps(){
+    public void simpleNumbersTest2CaseBubbleSortWithSteps() {
         SortArray sortArray = new SortArray(Arrays.asList(4, 5, 6, 7, 1, 2, 3));
         List<List<Integer>> actualSteps = sortArray.bubbleSort(true);
         List<List<Integer>> expectedSteps = new ArrayList<>();
@@ -238,24 +238,26 @@ public class BubbleSortTest {
         expectedSteps.add(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
         assertEquals(expectedSteps, actualSteps);
     }
-    @Test 
+
+    @Test
     public void randomWithBigSizeBubbleSort() {
         List<Integer> array = MeanTime.generateRandomArray(30000);
         SortArray sortArray = new SortArray(array);
 
         long startTime = System.currentTimeMillis();
-        
+
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
-        
+
         long stopTime = System.currentTimeMillis();
-        long elapsed_time=stopTime-startTime;
-        long expected_time = 10000 ; // in ms
+        long elapsed_time = stopTime - startTime;
+        long expected_time = 10000; // in ms
         // System.out.println("Elapsed time: " + elapsed_time + " ms");
         List<Integer> expectedSorted = new ArrayList<>(array);
         sort(expectedSorted);
-        assertTrue(elapsed_time <= expected_time );
-        assertEquals(expectedSorted, sortedLists.get(0));           
+        assertTrue(elapsed_time <= expected_time);
+        assertEquals(expectedSorted, sortedLists.get(0));
     }
+
     @Test
     public void testBubbleSortPositiveNegativeArrayWithSteps() {
         SortArray sortArray = new SortArray(Arrays.asList(-1, 5, -6, 12, -100, -1));
@@ -297,7 +299,7 @@ public class BubbleSortTest {
     @Test
     public void testBubbleSortWithRandomPositiveNegativeArrayBestCase() {
         List<Integer> array = new ArrayList<>();
-        for(int i = 10000; i >= -1000; i--) {
+        for (int i = 10000; i >= -1000; i--) {
             array.add(i);
         }
         List<Integer> expected = new ArrayList<>(array);
@@ -310,7 +312,7 @@ public class BubbleSortTest {
     @Test
     public void testBubbleSortWithRandomPositiveNegativeArrayWorstCase() {
         List<Integer> array = new ArrayList<>();
-        for(int i = -1000; i <= 10000; i++) {
+        for (int i = -1000; i <= 10000; i++) {
             array.add(i);
         }
         List<Integer> expected = new ArrayList<>(array);
@@ -319,5 +321,5 @@ public class BubbleSortTest {
         List<List<Integer>> sortedLists = sortArray.bubbleSort(false);
         assertEquals(expected, sortedLists.get(0));
     }
-  
+
 }
